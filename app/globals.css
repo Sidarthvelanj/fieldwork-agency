@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-paper text-ink dark:bg-paper-dark dark:text-ink-dark font-body antialiased transition-colors duration-300;
+  }
+
+  h1, h2, h3 {
+    @apply font-display;
+  }
+
+  /* Visible keyboard focus everywhere */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    @apply outline-none ring-2 ring-clay ring-offset-2 ring-offset-paper dark:ring-offset-paper-dark rounded-sm;
+  }
+}
+
+@layer utilities {
+  .wrap {
+    @apply max-w-wrap mx-auto px-6 md:px-10;
+  }
+
+  .label {
+    @apply font-mono text-xs uppercase tracking-[0.18em] text-ink/60 dark:text-ink-dark/60;
+  }
+
+  /* Registration-mark motif: the studio's signature texture, in the accent color */
+  .reg-marks {
+    background-image: radial-gradient(circle, #D97757 1px, transparent 1px);
+    background-size: 28px 28px;
+    opacity: 0.12;
+  }
+
+  /* Scroll-reveal: elements start hidden/offset, animate in when the .in-view class lands */
+  .reveal {
+    @apply opacity-0 translate-y-6 transition-all duration-700 ease-out;
+  }
+  .reveal.in-view {
+    @apply opacity-100 translate-y-0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    @apply opacity-100 translate-y-0;
+  }
+}
